@@ -1,0 +1,12 @@
+.stock {
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.demand {
+    font-weight: bold;
+}
+
+th {
+    font-weight: normal;
+}

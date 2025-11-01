@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Раскрой профиля</title>
+  </head>
+  <body>
+    <h1>Раскрой профиля</h1>
+    <p>
+        На данный момент можно ввести любое количество профилей на складе, но
+        только один заказанный.
+    </p>
+    <form id="algorithm-form">
+        <table class="stock">
+            <caption class="stock-caption">Склад</caption>
+            <tr>
+                <th>Длина (м)</th>
+                <th>Количество (шт)</th>
+            </tr>
+            <tr>
+                <td><input type="number" value="2" step="any" name="len1"></td>
+                <td><input type="number" placeholder="Введите количество" name="qty1"></td>
+            </tr>
+            <tr>
+                <td><input type="number" value="2.5" step="any" name="len2"></td>
+                <td><input type="number" placeholder="Введите количество" name="qty2"></td>
+            </tr>
+            <tr>
+                <td><input type="number" value="3" step="any" name="len3"></td>
+                <td><input type="number" placeholder="Введите количество" name="qty3"></td>
+            </tr>
+        </table>
+        <table class="demand">
+            <caption class="demand-caption">Заказ</caption>
+            <tr>
+                <th>Длина (м)</th>
+                <th>Количество (шт)</th>
+            </tr>
+            <tr>
+                <td><input type="number" step="any" name="demand_len"></td>
+                <td><input type="number" placeholder="Введите количество" name="demand_qty"></td>
+            </tr>
+        </table>
+        <button type="submit" id="algorithm-button">Посчитать раскрой</button>
+    </form>
+
+    <p id="result" style="white-space: pre-line;"></p>
+
+    <script src="static/script.js"></script>
+  </body>
+</html>
