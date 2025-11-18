@@ -251,13 +251,9 @@ class Solver:
                         if k < realised_profiles - 1:
                             combination += f"{self._demand_length}, "
                             continue
-                        combination += f"{self._demand_length}]" 
-                    output += f"План раскроя: {combination}"
+                        combination += f"{self._demand_length}]"
                     cur_waste = self._patterns[i][j].waste 
-                    if cur_waste > 0:
-                        output += f" | Обрезок: {cur_waste} м\n"
-                    else:
-                        output += '\n'
+                    output += f"План раскроя: {combination} | Обрезок: {cur_waste} м\n"
                     output += f"Количество повторений: {combination_qty}\n\n"
         output += f"Общие отходы: {min_waste} м "
         if min_waste > 0:
