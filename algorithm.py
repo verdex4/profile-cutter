@@ -6,15 +6,18 @@ class Solver:
     def __init__(self, user_input):
         (self._stock_lengths, self._stock_quantities, 
         self._demand_length, self._demand_quantity) = self._parse_input(user_input)
-        print(self._stock_lengths, self._stock_quantities, 
-        self._demand_length, self._demand_quantity)
+        print("after parse")
+        print(f"stock lengths: {self._stock_lengths}")
+        print(f"stock quantities: {self._stock_quantities}")
+        print(f"demand length: {self._demand_length}")
+        print(f"demand quantity: {self._demand_quantity}")
     
     def solve(self):
         message = self._validate_data()
         if message != "OK":
             return message
         self._patterns = self._make_cutting_patterns()
-        print(self._patterns)
+        print(f"cutting patterns: {self._patterns}")
         min_waste = self._find_min_waste()
         if min_waste == -1:
             return "Раскрой невозможен, недостаточно профиля на складе"
@@ -137,12 +140,14 @@ class Solver:
         # ПОЛУЧЕНИЕ РЕЗУЛЬТАТОВ
         min_waste = lp.value(problem.objective)
         if lp.LpStatus[problem.status] == "Optimal":
-            print(f"Минимальный остаток: {min_waste}")
+            print(f"Problem is solved!")
+            print(f"Minimal waste: {min_waste}")
             for i in range(len(x)):
                 for j in range(len(x[i])):
                     print(f"x{i}{j} = {lp.value(x[i][j])}")
             return min_waste
         elif lp.LpStatus[problem.status] == "Infeasible":
+            print(f"No solution found!")
             return -1
 
     def _find_uniform_solution(self, min_waste):
@@ -182,8 +187,6 @@ class Solver:
                     lowBound=0,
                     upBound=self._stock_quantities[i],
                     cat=lp.LpInteger)) # ПЕРВОЕ ОГРАНИЧЕНИЕ
-                
-        problem = lp.LpProblem("Waste_minimization", lp.LpMinimize)
 
         # ВТОРОЕ ОГРАНИЧЕНИЕ
         for i in range(len(x)):
@@ -226,11 +229,13 @@ class Solver:
         status = problem.solve()
 
         # ВЫВОД ЗНАЧЕНИЙ
-        if lp.LpStatus[problem.status] == lp.LpStatusOptimal:
-            print(f"Остатки: {min_waste}")
-            print(f"Использованные профили: {used_profiles}")
-            print(f"Среднее расстояние: {lp.value(problem.objective)}")
+        if status == lp.LpStatusOptimal:
+            print(f"Problem is solved!")
+            print(f"Waste: {min_waste}")
+            print(f"Used pieces: {used_profiles}")
+            print(f"Mean distance: {lp.value(problem.objective)}")
         elif lp.LpStatus[problem.status] == lp.LpStatusInfeasible:
+            print(f"No solution found!")
             return -1
 
         # ВЫВОД В ПОНЯТНОМ ФОРМАТЕ
@@ -242,7 +247,7 @@ class Solver:
                 output += f"Заготовка {l} м:\n"
             for j in range(len(x[i])):
                 combination_qty = int(lp.value(x[i][j])) # Количество используемой комбинации
-                print(f"x{i}{j} = {combination_qty}; profile: {self._stock_lengths[i]}")
+                print(f"x{i}{j} = {combination_qty}; заготовка: {self._stock_lengths[i]}")
                 if combination_qty > 0:
                     # Количество заказанных профилей в комбинации
                     realised_profiles = self._patterns[i][j].pieces_count
