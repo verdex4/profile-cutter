@@ -263,9 +263,11 @@ class Solver:
                             combination += f"{self._demand_length}, "
                             continue
                         combination += f"{self._demand_length}]"
-                    cur_waste = self._patterns[i][j].waste 
+                    cur_waste = self._patterns[i][j].waste
+                    cur_waste = self._clean_float(cur_waste) # Преобразуем в читаемый формат
                     output += f"План раскроя: {combination} | Обрезок: {cur_waste} м\n"
                     output += f"Количество повторений: {combination_qty}\n\n"
+        min_waste = self._clean_float(min_waste) # Преобразуем в читаемый формат
         output += f"Общие отходы: {min_waste} м "
         if min_waste > 0:
             total_used_length = sum(self._stock_lengths[i] * lp.value(used_profiles[i]) 
@@ -274,4 +276,17 @@ class Solver:
             output += f"({waste_part:.2f}% от использованной длины)"
 
         return output
+    
+    def _clean_float(self, num, max_precision=15):
+        """
+        Находит минимальную точность, убирает лишние цифры.
+        Пример: 0.33999999999999986 -> 0.34
+        """
+        print(f"num: {num}")
+        for precision in range(1, max_precision + 1):
+            rounded = round(num, precision)
+            if abs(num - rounded) < 1e-10:
+                print(f"rounded: {rounded}")
+                return rounded
+        return round(num, max_precision)
     
