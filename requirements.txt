@@ -1,3 +1,4 @@
 pulp
 Flask
 gunicorn
+numpy

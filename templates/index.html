@@ -10,39 +10,64 @@
     <h1>Раскрой линейных материалов</h1>
     <p>
         На сайте можно рассчитать раскрой линейных материалов с минимальными отходами и
-        равномерным распределением заготовок на складе.
+        равномерным распределением использования исходных заготовок.
     </p>
     <form id="algorithm-form">
         <table class="stock">
-            <caption class="stock-caption">Склад</caption>
-            <tr>
-                <th>Длина (м)</th>
-                <th>Количество (шт)</th>
-            </tr>
-            <tr>
-                <td><input type="number" value="2" placeholder="Введите длину" step="any" name="len1"></td>
-                <td><input type="number" value="100" placeholder="Введите количество" name="qty1"></td>
-            </tr>
-            <tr>
-                <td><input type="number" value="2.5" placeholder="Введите длину" step="any" name="len2"></td>
-                <td><input type="number" value="100" placeholder="Введите количество" name="qty2"></td>
-            </tr>
-            <tr>
-                <td><input type="number" value="3" placeholder="Введите длину" step="any" name="len3"></td>
-                <td><input type="number" value="100" placeholder="Введите количество" name="qty3"></td>
-            </tr>
+            <caption class="stock-caption">Исходные материалы</caption>
+            <thead>
+                <tr>
+                    <th>Длина (м)</th>
+                    <th>Количество (шт)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="number" value="2" placeholder="Введите длину" step="any" name="stock_len1"></td>
+                    <td><input type="number" value="100" placeholder="Введите количество" name="stock_qty1"></td>
+                    <td><button class="delete-stock-row" type="button">✕</button></td>
+                </tr>
+                <tr>
+                    <td><input type="number" value="2.5" placeholder="Введите длину" step="any" name="stock_len2"></td>
+                    <td><input type="number" value="100" placeholder="Введите количество" name="stock_qty2"></td>
+                    <td><button class="delete-stock-row" type="button">✕</button></td>
+                </tr>
+                <tr>
+                    <td><input type="number" value="3" placeholder="Введите длину" step="any" name="stock_len3"></td>
+                    <td><input type="number" value="100" placeholder="Введите количество" name="stock_qty3"></td>
+                    <td><button class="delete-stock-row" type="button">✕</button></td>
+                </tr>
+            </tbody>
         </table>
+
+        <div class="stock-button-group">
+            <button class="add-stock" type="button">Добавить заготовку</button>
+            <button class="remove-stock" type="button">Очистить</button>
+        </div>
+
         <table class="demand">
-            <caption class="demand-caption">Заказ</caption>
-            <tr>
-                <th>Длина (м)</th>
-                <th>Количество (шт)</th>
-            </tr>
-            <tr>
-                <td><input type="number" placeholder="Введите длину" step="any" name="demand_len"></td>
-                <td><input type="number" placeholder="Введите количество" name="demand_qty"></td>
-            </tr>
+            <caption class="demand-caption">Отрезки</caption>
+            <thead>
+                <tr>
+                    <th>Длина (м)</th>
+                    <th>Количество (шт)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="number" placeholder="Введите длину" step="any" name="demand_len1"></td>
+                    <td><input type="number" placeholder="Введите количество" name="demand_qty1"></td>
+                    <td><button class="delete-demand-row" type="button">✕</button></td>
+                </tr>
+            </tbody>
         </table>
+
+        <div class="demand-button-group">
+            <button class="add-demand" type="button">Добавить отрезок</button>
+            <button class="remove-demand" type="button">Очистить</button>
+        </div>
+
         <button type="submit" id="algorithm-button">Выполнить раскрой</button>
     </form>
 

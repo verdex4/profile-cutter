@@ -1,13 +1,95 @@
 .stock {
+    margin-top: 25px;
     font-weight: bold;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
+}
+
+.stock-caption {
+    margin-bottom: 5px;
+}
+
+.stock-button-group {
+    margin-bottom: 30px;
+}
+.stock-button-group button {
+    margin-right: 10px;
+}
+.stock-button-group button:last-child {
+    margin-right: 0;
+}
+
+.delete-stock-row, .delete-demand-row {
+    color: red;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.delete-stock-row:hover, .delete-demand-row:hover {
+    color: darkred;
 }
 
 .demand {
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+}
+
+.demand-caption {
+    margin-bottom: 5px;
+}
+
+.demand-button-group {
+    margin-bottom: 30px;
+}
+.demand-button-group button {
+    margin-right: 10px;
+}
+.demand-button-group button:last-child {
+    margin-right: 0;
+}
+
+.add-stock {
+    cursor: pointer;
+    width: 180px;
+}
+
+.remove-stock {
+    cursor: pointer;
+}
+
+.add-demand {
+    cursor: pointer;
+    width: 180px;
+}
+
+.remove-demand {
+    cursor: pointer;
+}
+
+#algorithm-button {
+    cursor: pointer;
+    background-color: green;
+    color: white;
+    border-color: darkgreen;
+    border-width: 2px;
+    height: 30px;
 }
 
 th {
     font-weight: normal;
+}
+
+td {
+    height: 25px;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    padding-right: 4px;
 }
